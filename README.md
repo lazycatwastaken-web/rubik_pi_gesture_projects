@@ -21,6 +21,42 @@ Uses hand gestures to control the Rubik Pi onboard LEDs.
 - Victory / pointing up: blue LED
 - Requires elevated LED-file permissions
 
+#### Hardware Prerequisites
+
+- Rubik Pi running Ubuntu
+- Compatible CSI camera
+- Heatsink or cooling
+- TAPO P125M smartplug (specifically for outlet/lamp control)
+
+
+### Qualcomm AI and camera prerequisites
+
+1. Install a supported Ubuntu image on the Rubik Pi and enable SSH.
+2. Install the Qualcomm AI Runtime SDK.
+3. Verify the libraries the program references
+```bash
+QAIRT=/opt/qcom/aistack/qairt/2.45.41.260507
+
+ls "$QAIRT/lib/aarch64-oe-linux-gcc11.2/libQnnTFLiteDelegate.so"
+ls "$QAIRT/lib/aarch64-oe-linux-gcc11.2/libQnnHtp.so"
+```
+4. Confirm that the QAIRT TFLite Delegate and HTP libraries are available.
+5. Install the Python packages from `requirements.txt`.
+6. Place the required `.tflite` models in the `models/` directory.
+7. Connect the CSI camera and verify that
+   `qtiqmmfsrc name=camsrc camera=0` produces frames.
+8. Run the application once and confirm that the Qualcomm NPU delegate loads
+   without errors.
+
+The commands in this repository assume:
+
+```text
+QAIRT path: /opt/qcom/aistack/qairt/2.45.41.260507
+Hexagon version: v68
+Camera source: qtiqmmfsrc name=camsrc camera=0
+
+```
+
 ## Notes
 
 Python virtual environments, credentials, logs, and Matter controller
