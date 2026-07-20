@@ -1,0 +1,31 @@
+# Python virtual environments
+.venv/
+.venv-host/
+venv/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+*.so
+
+# Logs and temporary files
+*.log
+gesture.log
+*.tmp
+
+# Local secrets and configuration
+.env
+.env.*
+*.pem
+*.key
+
+# Editors
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Generated media
+pose-output.mp4
